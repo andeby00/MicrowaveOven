@@ -3,7 +3,7 @@ using NUnit.Framework;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class IT6_UICookController
+    public class IT1_2_3_LightDisplayPowertubeOutput
     {
         [SetUp]
         public void Setup()

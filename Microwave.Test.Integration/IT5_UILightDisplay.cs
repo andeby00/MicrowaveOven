@@ -2,7 +2,8 @@ using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    public class Tests
+    [TestFixture]
+    public class IT5_UILightDisplay
     {
         [SetUp]
         public void Setup()

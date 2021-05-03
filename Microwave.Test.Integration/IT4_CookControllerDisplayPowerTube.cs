@@ -2,7 +2,8 @@ using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    public class Tests
+    [TestFixture]
+    public class IT4_CookControllerDisplayPowerTube
     {
         [SetUp]
         public void Setup()

@@ -1,9 +1,7 @@
-﻿using Microwave.Classes.Boundary;
-using Microwave.Classes.Interfaces;
+﻿using Microwave.Classes.Interfaces;
+using Microwave.Classes.Boundary;
 using NSubstitute;
 using NUnit.Framework;
-using System;
-using System.IO;
 
 namespace Microwave.Test.Integration
 {
@@ -24,16 +22,42 @@ namespace Microwave.Test.Integration
             _powerTube = new PowerTube(_output);
         }
 
+        #region IT1_LightOutput
+
         [Test]
-        public void LightOn_ToOutputTest()
+        public void TurnOn_LightIsOff()
         {
-            // Arrange
             _light.TurnOn();
-
-            // Act
-
-            // Assert
+            
             _output.Received().OutputLine("Light is turned on");
         }
+
+        [Test]
+        public void TurnOn_LightIsOn()
+        {
+            _light.TurnOn();
+            _light.TurnOn();
+            
+            _output.Received(1).OutputLine("Light is turned on");
+        }
+
+        [Test]
+        public void TurnOff_LightIsOff()
+        {
+            _light.TurnOff();
+            
+            _output.DidNotReceive().OutputLine("Light is turned off");
+        }
+
+        [Test]
+        public void TurnOff_LightIsOn()
+        {
+            _light.TurnOn();
+            _light.TurnOff();
+            
+            _output.Received().OutputLine("Light is turned off");
+        }
+
+        #endregion
     }
 }

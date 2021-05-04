@@ -1,6 +1,8 @@
 ﻿using Microwave.Classes.Interfaces;
 using Microwave.Classes.Boundary;
 using NSubstitute;
+using System;
+using System.IO;
 using NUnit.Framework;
 
 namespace Microwave.Test.Integration
@@ -8,18 +10,19 @@ namespace Microwave.Test.Integration
     [TestFixture]
     public class IT1_2_3_LightDisplayPowerTubeOutput
     {
-        private IOutput _output;
-        private Light _light;
-        private Display _display;
-        private PowerTube _powerTube;
+        private IOutput output;
+        private ILight light;
+        private IDisplay display;
+        private IPowerTube powerTube;
+
 
         [SetUp]
         public void Setup()
         {
-            _output = Substitute.For<IOutput>();
-            _light = new Light(_output);
-            _display = new Display(_output);
-            _powerTube = new PowerTube(_output);
+            output = new Output();
+            light = new Light(output);
+            display = new Display(output);
+            powerTube = new PowerTube(output);
         }
 
         #region IT1_LightOutput
@@ -27,35 +30,54 @@ namespace Microwave.Test.Integration
         [Test]
         public void TurnOn_LightIsOff()
         {
-            _light.TurnOn();
+            var output = new StringWriter();
+            Console.SetOut(output);
+
+            light.TurnOn();
+
+            string expectedResult = "Light is turned on \r\n";
+            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
             
-            _output.Received().OutputLine("Light is turned on");
         }
 
         [Test]
         public void TurnOn_LightIsOn()
         {
-            _light.TurnOn();
-            _light.TurnOn();
-            
-            _output.Received(1).OutputLine("Light is turned on");
+            var output = new StringWriter();
+            Console.SetOut(output);
+
+            light.TurnOn();
+            light.TurnOn();
+            //?
+
+            string expectedResult = "Light is turned on \r\n";
+            Assert.That(output.ToString(), Is.LessThanOrEqualTo(expectedResult));
+            //output.Received(1).OutputLine("Light is turned on");
         }
 
         [Test]
         public void TurnOff_LightIsOff()
         {
-            _light.TurnOff();
-            
-            _output.DidNotReceive().OutputLine("Light is turned off");
+            var output = new StringWriter();
+            Console.SetOut(output);
+
+            light.TurnOff();
+
+            string expectedResult = "";
+            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
         }
 
         [Test]
         public void TurnOff_LightIsOn()
         {
-            _light.TurnOn();
-            _light.TurnOff();
-            
-            _output.Received().OutputLine("Light is turned off");
+            var output = new StringWriter();
+            Console.SetOut(output);
+            light.TurnOn();
+
+            light.TurnOff();
+
+            string expectedResult = "Light is turned off \r\n";
+            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
         }
 
         #endregion
@@ -65,25 +87,38 @@ namespace Microwave.Test.Integration
         [Test]
         public void ShowTime_1Min1Sec()
         {
-            _display.ShowTime(1,1);
+            var output = new StringWriter();
+            Console.SetOut(output);
 
-            _output.Received().OutputLine("Display shows: 01:01");
+            display.ShowTime(1,1);
+
+            string expectedResult = "Display shows: 01:01 \r\n";
+            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
+            
         }
 
         [Test]
         public void ShowPower_50W()
         {
-            _display.ShowPower(50);
+            var output = new StringWriter();
+            Console.SetOut(output);
 
-            _output.Received().OutputLine("Display shows: 50 W");
+            display.ShowPower(50);
+
+            string expectedResult = "Display shows: 50 W \r\n";
+            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
         }
 
         [Test]
         public void Clear_DisplayIsCleared()
         {
-            _display.Clear();
+            var output = new StringWriter();
+            Console.SetOut(output);
 
-            _output.Received().OutputLine("Display cleared");
+            display.Clear();
+
+            string expectedResult = "Display cleared \r\n";
+            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
         }
 
         #endregion
@@ -93,26 +128,39 @@ namespace Microwave.Test.Integration
         [Test]
         public void TurnOn_CorrectPower()
         {
-            _powerTube.TurnOn(50);
+            var output = new StringWriter();
+            Console.SetOut(output);
 
-            _output.Received().OutputLine("PowerTube works with 50");
+            powerTube.TurnOn(50);
+
+            string expectedResult = "PowerTube works with 50 \r\n";
+            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
         }
 
         [Test]
         public void TurnOff_PowerTubeIsOff()
         {
-            _powerTube.TurnOff();
+            var output = new StringWriter();
+            Console.SetOut(output);
 
-            _output.DidNotReceive().OutputLine("PowerTube turned off");
+            powerTube.TurnOff();
+
+            string expectedResult = "";
+            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
         }
 
         [Test]
         public void TurnOff_PowerTubeIsOn()
         {
-            _powerTube.TurnOn(50);
-            _powerTube.TurnOff();
+            var output = new StringWriter();
+            Console.SetOut(output);
+            powerTube.TurnOn(50);
+            
+            powerTube.TurnOff();
 
-            _output.Received().OutputLine("PowerTube turned off");
+            string expectedResult = "PowerTube turned off \r\n";
+            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
+            
         }
 
         #endregion

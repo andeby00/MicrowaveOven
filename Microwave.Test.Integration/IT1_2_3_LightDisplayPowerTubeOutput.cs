@@ -10,19 +10,19 @@ namespace Microwave.Test.Integration
     [TestFixture]
     public class IT1_2_3_LightDisplayPowerTubeOutput
     {
-        private IOutput output;
-        private ILight light;
-        private IDisplay display;
-        private IPowerTube powerTube;
+        private IOutput _output;
+        private ILight _light;
+        private IDisplay _display;
+        private IPowerTube _powerTube;
 
 
         [SetUp]
         public void Setup()
         {
-            output = new Output();
-            light = new Light(output);
-            display = new Display(output);
-            powerTube = new PowerTube(output);
+            _output = new Output();
+            _light = new Light(_output);
+            _display = new Display(_output);
+            _powerTube = new PowerTube(_output);
         }
 
         #region IT1_LightOutput
@@ -33,7 +33,7 @@ namespace Microwave.Test.Integration
             var output = new StringWriter();
             Console.SetOut(output);
 
-            light.TurnOn();
+            _light.TurnOn();
 
             string expectedResult = "Light is turned on\r\n";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
@@ -46,8 +46,8 @@ namespace Microwave.Test.Integration
             var output = new StringWriter();
             Console.SetOut(output);
 
-            light.TurnOn();
-            light.TurnOn();
+            _light.TurnOn();
+            _light.TurnOn();
             //?
 
             string expectedResult = "Light is turned on\r\n";
@@ -61,7 +61,7 @@ namespace Microwave.Test.Integration
             var output = new StringWriter();
             Console.SetOut(output);
 
-            light.TurnOff();
+            _light.TurnOff();
 
             string expectedResult = "";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
@@ -72,9 +72,9 @@ namespace Microwave.Test.Integration
         {
             var output = new StringWriter();
             Console.SetOut(output);
-            light.TurnOn();
+            _light.TurnOn();
 
-            light.TurnOff();
+            _light.TurnOff();
 
             string expectedResult = "Light is turned off\r\n";
             Assert.That(output.ToString(), Contains.Substring(expectedResult));
@@ -90,7 +90,7 @@ namespace Microwave.Test.Integration
             var output = new StringWriter();
             Console.SetOut(output);
 
-            display.ShowTime(1,1);
+            _display.ShowTime(1,1);
 
             string expectedResult = "Display shows: 01:01\r\n";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
@@ -103,7 +103,7 @@ namespace Microwave.Test.Integration
             var output = new StringWriter();
             Console.SetOut(output);
 
-            display.ShowPower(50);
+            _display.ShowPower(50);
 
             string expectedResult = "Display shows: 50 W\r\n";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
@@ -115,7 +115,7 @@ namespace Microwave.Test.Integration
             var output = new StringWriter();
             Console.SetOut(output);
 
-            display.Clear();
+            _display.Clear();
 
             string expectedResult = "Display cleared\r\n";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
@@ -131,7 +131,7 @@ namespace Microwave.Test.Integration
             var output = new StringWriter();
             Console.SetOut(output);
 
-            powerTube.TurnOn(50);
+            _powerTube.TurnOn(50);
 
             string expectedResult = "PowerTube works with 50\r\n";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
@@ -143,7 +143,7 @@ namespace Microwave.Test.Integration
             var output = new StringWriter();
             Console.SetOut(output);
 
-            powerTube.TurnOff();
+            _powerTube.TurnOff();
 
             string expectedResult = "";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
@@ -154,9 +154,9 @@ namespace Microwave.Test.Integration
         {
             var output = new StringWriter();
             Console.SetOut(output);
-            powerTube.TurnOn(50);
+            _powerTube.TurnOn(50);
             
-            powerTube.TurnOff();
+            _powerTube.TurnOff();
 
             string expectedResult = "PowerTube turned off\r\n";
             Assert.That(output.ToString(), Contains.Substring(expectedResult));

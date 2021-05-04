@@ -35,7 +35,7 @@ namespace Microwave.Test.Integration
 
             light.TurnOn();
 
-            string expectedResult = "Light is turned on \r\n";
+            string expectedResult = "Light is turned on\r\n";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
             
         }
@@ -50,7 +50,7 @@ namespace Microwave.Test.Integration
             light.TurnOn();
             //?
 
-            string expectedResult = "Light is turned on \r\n";
+            string expectedResult = "Light is turned on\r\n";
             Assert.That(output.ToString(), Is.LessThanOrEqualTo(expectedResult));
             //output.Received(1).OutputLine("Light is turned on");
         }
@@ -76,8 +76,8 @@ namespace Microwave.Test.Integration
 
             light.TurnOff();
 
-            string expectedResult = "Light is turned off \r\n";
-            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
+            string expectedResult = "Light is turned off\r\n";
+            Assert.That(output.ToString(), Contains.Substring(expectedResult));
         }
 
         #endregion
@@ -92,7 +92,7 @@ namespace Microwave.Test.Integration
 
             display.ShowTime(1,1);
 
-            string expectedResult = "Display shows: 01:01 \r\n";
+            string expectedResult = "Display shows: 01:01\r\n";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
             
         }
@@ -105,7 +105,7 @@ namespace Microwave.Test.Integration
 
             display.ShowPower(50);
 
-            string expectedResult = "Display shows: 50 W \r\n";
+            string expectedResult = "Display shows: 50 W\r\n";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
         }
 
@@ -117,7 +117,7 @@ namespace Microwave.Test.Integration
 
             display.Clear();
 
-            string expectedResult = "Display cleared \r\n";
+            string expectedResult = "Display cleared\r\n";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
         }
 
@@ -133,7 +133,7 @@ namespace Microwave.Test.Integration
 
             powerTube.TurnOn(50);
 
-            string expectedResult = "PowerTube works with 50 \r\n";
+            string expectedResult = "PowerTube works with 50\r\n";
             Assert.That(output.ToString(), Is.EqualTo(expectedResult));
         }
 
@@ -158,8 +158,8 @@ namespace Microwave.Test.Integration
             
             powerTube.TurnOff();
 
-            string expectedResult = "PowerTube turned off \r\n";
-            Assert.That(output.ToString(), Is.EqualTo(expectedResult));
+            string expectedResult = "PowerTube turned off\r\n";
+            Assert.That(output.ToString(), Contains.Substring(expectedResult));
             
         }
 

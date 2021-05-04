@@ -18,7 +18,7 @@ namespace Microwave.Test.Integration
         [SetUp]
         public void Setup()
         {
-            _userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton);
+            //_userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton,);
         }
 
         [Test]

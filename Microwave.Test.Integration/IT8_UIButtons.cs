@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class IT8_UIDoor
+    public class IT8_UIButtons
     {
         [SetUp]
         public void Setup()

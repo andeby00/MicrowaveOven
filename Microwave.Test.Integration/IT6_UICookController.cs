@@ -49,7 +49,6 @@ namespace Microwave.Test.Integration
             _startCancelButton.Pressed += Raise.Event();
 
             _output.Received().OutputLine("PowerTube works with 50");
-            //_cooker.Received().StartCooking(Arg.Any<int>(), Arg.Any<int>());
         }
 
         [Test]
@@ -61,7 +60,6 @@ namespace Microwave.Test.Integration
             _startCancelButton.Pressed += Raise.Event();
 
             _output.Received().OutputLine("PowerTube turned off");
-            //_cooker.Received().Stop();
         }
 
         [Test]
@@ -73,7 +71,6 @@ namespace Microwave.Test.Integration
             _door.Opened += Raise.Event();
             
             _output.Received().OutputLine("PowerTube turned off");
-            //_cooker.Received().Stop();
         }
 
         [Test]

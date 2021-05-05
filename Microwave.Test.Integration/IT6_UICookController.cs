@@ -52,6 +52,18 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
+        public void CookerStartCooking_CookerTest_StartCookingProcessWith150W()
+        {
+            _powerButton.Pressed += Raise.Event();
+            _powerButton.Pressed += Raise.Event();
+            _powerButton.Pressed += Raise.Event();
+            _timeButton.Pressed += Raise.Event();
+            _startCancelButton.Pressed += Raise.Event();
+
+            _output.Received().OutputLine("PowerTube works with 50");
+        }
+
+        [Test]
         public void CookerStartCooking_CookerTest_StopCookingWithButton()
         {
             _powerButton.Pressed += Raise.Event();

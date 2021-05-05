@@ -42,8 +42,7 @@ namespace Microwave.Classes.Boundary
         private void OnTimerEvent(object sender, System.Timers.ElapsedEventArgs args)
         {
             // One tick has passed
-            // Do what I should
-            TimeRemaining -= 1;
+            TimeRemaining -= 1; // Error: 1000 changed to 1
             TimerTick?.Invoke(this, EventArgs.Empty);
 
             if (TimeRemaining <= 0)

@@ -9,7 +9,7 @@ using NUnit.Framework.Internal.Execution;
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class IT7_UIButtons
+    public class IT7_UIDoor
     {
         private Door _door;
         private IOutput _output;
@@ -21,7 +21,7 @@ namespace Microwave.Test.Integration
         private IDisplay _display;
         private IPowerTube _powerTube;
         private ICookController _cooker;
-        private IUserInterface _ui;
+        private UserInterface _ui;
 
         [SetUp]
         public void Setup()
@@ -51,6 +51,7 @@ namespace Microwave.Test.Integration
         public void OnDoorOpened_DoorTest_StateWasSETPOWER()
         {
             _powerButton.Pressed += Raise.Event();
+
             _door.Open();
 
             _output.Received().OutputLine("Light is turned on");
@@ -61,6 +62,7 @@ namespace Microwave.Test.Integration
         {
             _powerButton.Pressed += Raise.Event();
             _timeButton.Pressed += Raise.Event();
+
             _door.Open();
 
             _output.Received().OutputLine("Light is turned on");
@@ -72,6 +74,7 @@ namespace Microwave.Test.Integration
             _powerButton.Pressed += Raise.Event();
             _timeButton.Pressed += Raise.Event();
             _startCancelButton.Pressed += Raise.Event();
+
             _door.Open();
 
             _output.Received().OutputLine("Light is turned on");
@@ -81,6 +84,7 @@ namespace Microwave.Test.Integration
         public void OnDoorOpened_DoorTest_StateWasDOOROPEN()
         {
             _door.Open();
+
             _door.Close();
 
             _output.Received().OutputLine("Light is turned off");

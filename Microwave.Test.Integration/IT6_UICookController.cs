@@ -17,10 +17,10 @@ namespace Microwave.Test.Integration
         private IButton _timeButton;
         private IButton _startCancelButton;
         private IDoor _door;
-        private Timer _timer;
-        private Light _light;
-        private Display _display;
-        private PowerTube _powerTube;
+        private ITimer _timer;
+        private ILight _light;
+        private IDisplay _display;
+        private IPowerTube _powerTube;
         private CookController _cooker;
         private UserInterface _ui;
 

@@ -10,10 +10,10 @@ namespace Microwave.Test.Integration
     [TestFixture]
     public class IT1_2_3_LightDisplayPowerTubeOutput
     {
-        private IOutput _output;
-        private ILight _light;
-        private IDisplay _display;
-        private IPowerTube _powerTube;
+        private Output _output;
+        private Light _light;
+        private Display _display;
+        private PowerTube _powerTube;
 
 
         [SetUp]
@@ -45,10 +45,9 @@ namespace Microwave.Test.Integration
         {
             var output = new StringWriter();
             Console.SetOut(output);
+            _light.TurnOn();
 
             _light.TurnOn();
-            _light.TurnOn();
-            //?
 
             string expectedResult = "Light is turned on\r\n";
             Assert.That(output.ToString(), Is.LessThanOrEqualTo(expectedResult));

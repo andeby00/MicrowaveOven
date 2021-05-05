@@ -20,7 +20,7 @@ namespace Microwave.Test.Integration
         private IDisplay _display;
         private IPowerTube _powerTube;
         private ICookController _cooker;
-        private IUserInterface _ui;
+        private UserInterface _ui;
 
         [SetUp]
         public void Setup()

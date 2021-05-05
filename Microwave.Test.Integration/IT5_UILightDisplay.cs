@@ -18,8 +18,8 @@ namespace Microwave.Test.Integration
         private ITimer _timer;
         private IPowerTube _powerTube;
         private ICookController _cooker;
-        private ILight _light;
-        private IDisplay _display;
+        private Light _light;
+        private Display _display;
         private UserInterface _ui;
 
         [SetUp]

@@ -23,7 +23,7 @@ namespace Microwave.Test.Integration
         [SetUp]
         public void Setup()
         {
-            _timer = Substitute.For<Timer>();
+            _timer = new Timer();
             _userInterface = Substitute.For<IUserInterface>();
             _output = Substitute.For<IOutput>();
             _display = new Display(_output);
@@ -59,7 +59,7 @@ namespace Microwave.Test.Integration
         public void StartCooking_TimerTest_StartTimerWithCorrectTime()
         {
             _cooker.StartCooking(50, 5);
-            _timer.Received().Start(5);
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(5));
         }
 
         [Test]

@@ -39,8 +39,77 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void Test1()
+        public void OnPowerPressed_PowerButtonTest_StateWasREADY()
         {
+            _powerButton.Press();
+
+            _output.Received().OutputLine("Display shows: 50 W");
+        }
+
+        [Test]
+        public void OnPowerPressed_PowerButtonTest_StateWasSETPOWER()
+        {
+            _powerButton.Press();
+
+            _powerButton.Press();
+
+            _output.Received().OutputLine("Display shows: 100 W");
+        }
+
+        [Test]
+        public void OnTimePressed_TimeButtonTest_StateWasSETPOWER()
+        {
+            _powerButton.Press();
+
+            _timeButton.Press();
+
+            _output.Received().OutputLine("Display shows: 01:00");
+        }
+
+        [Test]
+        public void OnTimePressed_TimeButtonTest_StateWasSETTIME()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+
+            _timeButton.Press();
+
+            _output.Received().OutputLine("Display shows: 02:00");
+        }
+
+
+        [Test]
+        public void OnStartCancelPressed_StartCancelButtonTest_StateWasSETPOWER()
+        {
+            _powerButton.Press();
+
+            _startCancelButton.Press();
+
+            _output.Received().OutputLine("Display cleared");
+        }
+
+        [Test]
+        public void OnStartCancelPressed_StartCancelButtonTest_StateWasSETTIME()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+
+            _startCancelButton.Press();
+
+            _output.Received().OutputLine("Light is turned on");
+        }
+
+
+        [Test]
+        public void OnStartCancelPressed_StartCancelButtonTest_StateWasCOOKING()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            
+            _startCancelButton.Press();
+
+            _output.Received().OutputLine("Light is turned off");
         }
     }
 }

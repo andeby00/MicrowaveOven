@@ -9,16 +9,13 @@ namespace Microwave.Test.Integration
     [TestFixture]
     public class IT7_UIButtons
     {
-        private UserInterface _userInterface;
-        private IButton _timeButton;
-        private IButton _powerButton;
-        private IButton _startCancelButton;
+        private Door _door;
 
 
         [SetUp]
         public void Setup()
         {
-            //_userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton,);
+            _door = new Door();
         }
 
         [Test]

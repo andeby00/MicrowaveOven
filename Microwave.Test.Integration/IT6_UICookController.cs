@@ -60,7 +60,7 @@ namespace Microwave.Test.Integration
             _timeButton.Pressed += Raise.Event();
             _startCancelButton.Pressed += Raise.Event();
 
-            _output.Received().OutputLine("PowerTube works with 50");
+            _output.Received().OutputLine("PowerTube works with 150");
         }
 
         [Test]
